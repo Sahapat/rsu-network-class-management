@@ -1,0 +1,9 @@
+export PYTHONPATH=$PWD
+export DB_HOST=localhost
+export DB_NAME=ff_designer
+export DB_PORT=5432
+export DB_USER=ff_designer
+export DB_PASSWORD=password
+export API_KEY=1234
+export ALLOW_ORIGINS='["*"]'
+uvicorn app.main:app --host 0.0.0.0 --port 8888 --reload
