@@ -44,8 +44,9 @@ async def assignment_upload(file: UploadFile, student_id: str, assignment_name: 
 
 @assignment_upload_api.post("assignment/verify", dependencies=[Depends(api_key_guard)])
 async def assignment_verify(student_id: str, assignment_name: str):
-    files = os.listdir()
+    files = os.listdir(path='./assignments')
     for file in files:
+        print(file)
         if file.startswith(f'{student_id}_{assignment_name.replace(" ", "_")}'):
             return 'Done'
     return 'Not found'
