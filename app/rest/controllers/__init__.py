@@ -1,1 +1,1 @@
-from .file_upload_controller import assignment_upload_api
+from .file_upload_controller import file_upload_api

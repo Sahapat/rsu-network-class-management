@@ -20,12 +20,12 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-assignment_upload_api = APIRouter(
-    prefix="/assignment-upload"
+file_upload_api = APIRouter(
+    prefix="/file-upload"
 )
 
 #####  UPLOAD FILES  #####
-@assignment_upload_api.post("/assignment", dependencies=[Depends(api_key_guard)])
+@file_upload_api.post("/assignment", dependencies=[Depends(api_key_guard)])
 async def assignment_upload(file: UploadFile, student_id: str, assignment_name: str):
     if file is None or student_id.strip() == '' or assignment_name.strip() == '':
         raise HTTPException(status_code=400, detail="Invalid data")
@@ -42,7 +42,7 @@ async def assignment_upload(file: UploadFile, student_id: str, assignment_name: 
         await out_file.write(content)
     return "Success"
 
-@assignment_upload_api.post("assignment/verify", dependencies=[Depends(api_key_guard)])
+@file_upload_api.post("/assignment/verify", dependencies=[Depends(api_key_guard)])
 async def assignment_verify(student_id: str, assignment_name: str):
     files = os.listdir(path='./assignments')
     for file in files:

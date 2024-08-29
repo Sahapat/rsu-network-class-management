@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.settings import app_settings
 from .dependency import inject_dependencies
-from .controllers import assignment_upload_api
+from .controllers import file_upload_api
 
 import logging
 logging.basicConfig(format='%(asctime)s %(message)s',
@@ -37,7 +37,7 @@ def init_app():
     async def shutdown():
         pass
 
-    app.include_router(assignment_upload_api, prefix='/api/v1',)
+    app.include_router(file_upload_api, prefix='/api/v1',)
     return app
 
 
